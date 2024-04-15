@@ -32,4 +32,4 @@ PacienteSchema.methods.isValidPassword = async function(password){
     return compare
 }
 
-module.exports = mongoose.model('Paciente', PacienteSchema)
+module.exports = mongoose.model('User', PacienteSchema)

@@ -1,6 +1,6 @@
 const express = require('express')
 const authRouter = express.Router()
-const User = require('../models/director')
+const User = require('../models/paciente')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
@@ -8,9 +8,9 @@ require('dotenv').config()
 // User registration
 authRouter.post('/register', async (req, res) => {
     try {
-        const { email, password, dtSurName, dtLastName } = req.body
+        const { email, password, pacienteNombre, pacienteApellido } = req.body
         /*         const hashedPassword = await bcrypt.hash(password, 10) */
-        const user = new User({ email, password: password, dtLastName: dtLastName, dtSurName: dtSurName })
+        const user = new User({ email, password: password, pacienteNombre: pacienteNombre, pacienteApellido: pacienteApellido })
         await user.save()
         res.status(201).json({ message: 'Usuario registrado correctamente' })
     } catch (error) {
@@ -30,7 +30,7 @@ authRouter.post('/login', async (req, res) => {
         if (!passwordMatch) {
             return res.status(401).json({ error: 'Fallo en la autenticación' })
         }
-        const token = jwt.sign({ dtId: user.dtId }, process.env.JWT_SECRET_KEY, {
+        const token = jwt.sign({ pacienteId: user.pacienteId }, process.env.JWT_SECRET_KEY, {
             expiresIn: '1h',
         })
         res.status(200).json({ token })
