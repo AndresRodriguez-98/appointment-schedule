@@ -21,11 +21,12 @@ const CitaSchema = new mongoose.Schema({
         auto: true,
     },
     nombreMedico: { type: String, require: true },
+    nombrePaciente: { type: String, require: true},
     fechaCreacion: { type: mongoose.Schema.Types.Date, auto: true, unique:true },
-    fechaCita: { type: mongoose.Schema.Types.Date, auto: true, unique:true },
-    precio: { type: Number, require: false, default: 0},
-    cancelada: { type: Boolean, require: false, default: false},
-    pagada: { type: Boolean, require: false, default: false}
+    fechaCita: { type: String, require:true },
+    precio: { type: Number, require: true, default: 0},
+    cancelada: { type: Boolean, auto: true, default: false},
+    pagada: { type: Boolean, auto: true, default: false}
 })
 
 module.exports = mongoose.model('Cita', CitaSchema)

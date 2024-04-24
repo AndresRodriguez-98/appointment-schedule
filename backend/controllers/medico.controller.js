@@ -1,23 +1,7 @@
 const Medico = require('../models/medico')
 
-const obtenerMedicos = async (req, res) => {
-    const medicos = await Medico.find({}).exec()
-    res.json(medicos)
-}
-
-const obtenerMedicoPorId = async (req, res) => {
-
-    const medico = await Medico.findOne({ dtId: req.params.medicoId }).exec()
-
-    if (medico) {
-        res.json(medico)
-    } else {
-        res.status(404).json({ error: 'Médico no encontrado' })
-    }
-}
-
 const agregarMedico = async (req, res) => {
-    const { medicoId, medicoNombre, medicoApellido, especialidad, bono, citasLista } = req.body
+    const { medicoNombre, medicoApellido, especialidad, bono, citasLista } = req.body
 
     if (!medicoNombre || !medicoApellido) {
         return res.status(400).json({ error: 'Se requiere nombre y apellido para agregar un Médico' })
@@ -27,6 +11,22 @@ const agregarMedico = async (req, res) => {
     await nuevoMedico.save()
 
     res.status(201).json(nuevoMedico)
+}
+
+const obtenerMedicos = async (req, res) => {
+    const medicos = await Medico.find({}).exec()
+    res.json(medicos)
+}
+
+const obtenerMedicoPorId = async (req, res) => {
+
+    const medico = await Medico.findOne({ medicoId: req.params.medicoId }).exec()
+
+    if (medico) {
+        res.json(medico)
+    } else {
+        res.status(404).json({ error: 'Médico no encontrado' })
+    }
 }
 
 const eliminarMedico = async (req, res) => {

@@ -14,9 +14,9 @@ passport.use('signup', new localStrategy({
     passwordField: 'password'
 }, async (req, email, password, done) => {
     try {
-        const nuevoMedico = new User({ pacienteNombre: pacienteNombre, pacienteApellido: pacienteApellido, email: email, password: password })
-        await nuevoMedico.save()
-        return done(null, nuevoMedico)
+        const nuevoPaciente = new User({ pacienteNombre: pacienteNombre, pacienteApellido: pacienteApellido, edad: edad, email: email, password: password })
+        await nuevoPaciente.save()
+        return done(null, nuevoPaciente)
     } catch (e) {
         return done(e)
     }

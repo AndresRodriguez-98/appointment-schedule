@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const medicoRoutes = require('./routes/medico.routes')
+const pacienteRoutes = require('./routes/paciente.routes')
+const citaRoutes = require('./routes/citas.routes')
 const authRoutes = require('./routes/auth.routes')
 const mongoose = require('mongoose')
 
@@ -8,18 +10,24 @@ app.set('PORT', 3000)
 
 app.use(express.json())
 
-// Rutas para auth
+// Ruta para autenticación
 app.use('/auth', authRoutes)
 
-// Rutas para jugadores
-app.use('/medicos', medicoRoutes)
+// Ruta para los usuarios/pacientes
+app.use('/user', pacienteRoutes)
+
+// Ruta para los medicos
+app.use('/medico', medicoRoutes)
+
+// Ruta para citas
+app.use('/cita', citaRoutes)
 
 const port = app.get('PORT')
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`)
 })
 
-// cadena de conexión
+// Cadena de conexión
 
 main().catch(err => console.log(err))
 
