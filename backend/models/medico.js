@@ -11,7 +11,7 @@ const MedicoSchema = new mongoose.Schema({
     medicoNombre: { type: String, require: true },
     medicoApellido: { type: String, require: true },
     especialidad: { type: String, require:true, default: 'Otorrinolaringólogo'},
-    citasLista: { type: Array, require: false, null: true },
+    citasLista: { type: Array, require: false, default: [] },
     bono: { type: String, require: false, default: 'Bono A' },
 })
 
