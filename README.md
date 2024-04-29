@@ -12,44 +12,43 @@
 
 ## 📊 Requerimientos:
 
-GESTIÓN USUARIOS / PACIENTES
-◍ Registro de usuarios
-◍ Login de usuarios
-◍ Obtener listado de pacientes
-◍ Obtener un paciente
-◍ Editar perfil del paciente
-◍ Eliminar un paciente
+<h3> GESTIÓN USUARIOS / PACIENTES </h3>
+◍ Registro de usuarios <br />
+◍ Login de usuarios<br />
+◍ Obtener listado de pacientes<br />
+◍ Obtener un paciente<br />
+◍ Editar perfil del paciente<br />
+◍ Eliminar un paciente<br />
 ◍ Historial de citas del usuario
 
-GESTIÓN MEDICOS
-◍ Crear médicos
-◍ Obtener listado de médicos
-◍ Obtener un médico
-◍ Eliminar un médico
+<h3>GESTIÓN MEDICOS</h3>
+◍ Crear médicos<br />
+◍ Obtener listado de médicos<br />
+◍ Obtener un médico<br />
+◍ Eliminar un médico<br />
 ◍ Historial de citas del médico
 
-GESTIÓN CITAS
-◍ Crear citas (fecha, hora, profesional)
-◍ Obtener citas
-◍ Obtener una cita
-◍ Cancelar citas
-o Pago de citas online (MP)
-o Modificar el horario de las citas
-o Feedback de la cita.
+<h3>GESTIÓN CITAS</h3>
+◍ Crear citas (fecha, hora, profesional)<br />
+◍ Obtener citas<br />
+◍ Obtener una cita<br />
+◍ Cancelar citas<br />
+◍  Pago de citas online (MP)<br />
+◍  Modificar el horario de las citas<br />
+◍  Feedback de la cita.
 
-AUTENTICACIÓN
+<h3>AUTENTICACIÓN</h3>
 ◍ Por medio de Passport implementar, aunque sea 1 autenticación vista en el curso (Local, Github, Google)
 
-PRUEBAS
-o Testear con jest para validar que cada unidad de codigo del sisema funciona correctamente.
+<h3>PRUEBAS</h3>
+◍ Testear con jest para validar que cada unidad de codigo del sisema funciona correctamente.
 
-REPO GITHUB
-◍ Hacer un readme copado.
-
-DOCUMENTACIÓN
+<h3>DOCUMENTACIÓN</h3>
 ◍ Probar todos los endpoints y guardar las pruebas funcionando en una carpeta de Postman.
 
 ## 🌀 Tecnologías Utilizadas
+
+<div flex-direction="row">
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" width="128" height="128" />
 
@@ -61,6 +60,7 @@ DOCUMENTACIÓN
           
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width="128" height="128" />
             
+</div>
           
 ## ⏳ Instalación
 
