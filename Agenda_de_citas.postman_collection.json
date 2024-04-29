@@ -1,0 +1,446 @@
+{
+	"info": {
+		"_postman_id": "9005a3a6-3f7f-49fb-aa1a-9a72edbbf061",
+		"name": "Agenda_de_citas",
+		"description": "Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34477721"
+	},
+	"item": [
+		{
+			"name": "Login/register",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"patriciafornales@yahoo.com.ar\",\r\n    \"password\": \"111188\",\r\n    \"pacienteNombre\": \"Patricia\",\r\n    \"pacienteApellido\": \"Fornales\",\r\n    \"obraSocial\": \"OSPE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"jwt_token\", response.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"patriciafornales@yahoo.com.ar\",\r\n    \"password\": \"111188\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login del usuario"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User(paciente)",
+			"item": [
+				{
+					"name": "Buscar pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar paciente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/661d8fd527a3a0fdad6d49c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"661d8fd527a3a0fdad6d49c5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/661d9b0527a3a0fdad6d49cc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"661d9b0527a3a0fdad6d49cc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar perfil del paciente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"_id\": \"661d8fd527a3a0fdad6d49c6\",\r\n        \"pacienteId\": \"661d8fd527a3a0fdad6d49c5\",\r\n        \"pacienteNombre\": \"Andres\",\r\n        \"pacienteApellido\": \"Rodriguez\",\r\n        \"edad\": 26,\r\n        \"obraSocial\": \"Ioma\",\r\n        \"citasLista\": [],\r\n        \"email\": \"andresrodriguezab98@gmail.com\",\r\n        \"password\": \"$2b$10$Dn1u5gBzK.1YpJqJzKqjruMH9zoZMG9s.wrlpCH6bz/ZKIrGEvFPy\",\r\n        \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/661d8fd527a3a0fdad6d49c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"661d8fd527a3a0fdad6d49c5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Médico",
+			"item": [
+				{
+					"name": "Crear médico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicoNombre\": \"Gabriela\",\r\n    \"medicoApellido\": \"Fernandez\",\r\n    \"especialidad\": \"Oftalmóloga\",\r\n    \"bono\": \"C\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/medico/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medico",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener médicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/medico/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medico",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener médico por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/medico/66296a79ca56e8d810558fe9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medico",
+								"66296a79ca56e8d810558fe9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar médico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/medico/66296b84cbb8d1c0df759563",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medico",
+								"66296b84cbb8d1c0df759563"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Citas",
+			"item": [
+				{
+					"name": "Crear cita",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicoId\": \"66296a4eca56e8d810558fe6\",\r\n    \"pacienteId\": \"6627d06e034d92bb62a3fa2e\",\r\n    \"nombreMedico\": \"Pablo Martin\",\r\n    \"nombrePaciente\": \"Vicente Jalil\",\r\n    \"fechaCita\": \"19:00HS 30/4/2024\",\r\n    \"precio\": 2000,\r\n    \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cita",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cita"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar cita",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cita/662ad16e22a1792812ebe3dc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cita",
+								"662ad16e22a1792812ebe3dc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener citas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cita",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cita"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener cita por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cita/66296ef1da47aba3c5e16a30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cita",
+								"66296ef1da47aba3c5e16a30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modifica fecha de cita",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaCita\": \"11:00 AM, Dia 29/04 , Consultorio 4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cita/662ad45e09318726275c3bd2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cita",
+								"662ad45e09318726275c3bd2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Feedback",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"feedback\": \"Malestar estomacal y 39,1 de fiebre, posible gastritis\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cita/662ad45e09318726275c3bd2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cita",
+								"662ad45e09318726275c3bd2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -14,9 +14,9 @@ passport.use('signup', new localStrategy({
     passwordField: 'password'
 }, async (req, email, password, done) => {
     try {
-        const newDt = new User({ dtLastName: dtLastName, dtSurName: dtSurName, email: email, password: password })
-        await newDt.save()
-        return done(null, newDt)
+        const nuevoPaciente = new User({ pacienteNombre: pacienteNombre, pacienteApellido: pacienteApellido, edad: edad, email: email, password: password })
+        await nuevoPaciente.save()
+        return done(null, nuevoPaciente)
     } catch (e) {
         return done(e)
     }
@@ -38,7 +38,7 @@ passport.use('login', new localStrategy({
             return done(null, false, { message: 'Usuario o contraseña incorrecta' })
         }
 
-        return done(null, user, { message: 'Ingresaste correctamente al GranDt' })
+        return done(null, user, { message: 'Ingresaste correctamente a tu Agenda de citas' })
     } catch (e) {
         return done(e)
     }

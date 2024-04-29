@@ -11,8 +11,9 @@ const PacienteSchema = new mongoose.Schema({
     },
     pacienteNombre: { type: String, require: true },
     pacienteApellido: { type: String, require: true },
-    citasLista: { type: Array, require: false, null: true },
-    obraSocial: { type: Array, require: false, default: 'Ioma' },
+    edad: { type: Number, require:true },
+    citasLista: { type: Array, require: false, default: [] },
+    obraSocial: { type: String, require: false, default: 'Ioma' },
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true }
 })
@@ -32,4 +33,4 @@ PacienteSchema.methods.isValidPassword = async function(password){
     return compare
 }
 
-module.exports = mongoose.model('Paciente', PacienteSchema)
+module.exports = mongoose.model('User', PacienteSchema)

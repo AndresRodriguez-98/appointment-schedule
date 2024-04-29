@@ -10,22 +10,20 @@ const CitaSchema = new mongoose.Schema({
     },
     medicoId: {
         type: mongoose.Schema.Types.ObjectId,
-        index: true,
         required: true,
-        auto: true,
     },
     pacienteId: {
         type: mongoose.Schema.Types.ObjectId,
-        index: true,
         required: true,
-        auto: true,
     },
     nombreMedico: { type: String, require: true },
-    fechaCreacion: { type: mongoose.Schema.Types.Date, auto: true, unique:true },
-    fechaCita: { type: mongoose.Schema.Types.Date, auto: true, unique:true },
-    precio: { type: Number, require: false, default: 0},
-    cancelada: { type: Boolean, require: false, default: false},
-    pagada: { type: Boolean, require: false, default: false}
+    nombrePaciente: { type: String, require: true },
+    fechaCreacion: { type: mongoose.Schema.Types.Date, auto: true },
+    fechaCita: { type: String, require: true },
+    precio: { type: Number, require: true, default: 0 },
+    cancelada: { type: Boolean, auto: true, default: false },
+    pagada: { type: Boolean, auto: true, default: false },
+    feedback: { type: String, require: false, default: '' }
 })
 
 module.exports = mongoose.model('Cita', CitaSchema)
