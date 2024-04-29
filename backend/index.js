@@ -10,24 +10,18 @@ app.set('PORT', 3000)
 
 app.use(express.json())
 
-// Ruta para autenticación
 app.use('/auth', authRoutes)
 
-// Ruta para los usuarios/pacientes
 app.use('/user', pacienteRoutes)
 
-// Ruta para los medicos
 app.use('/medico', medicoRoutes)
 
-// Ruta para citas
 app.use('/cita', citaRoutes)
 
 const port = app.get('PORT')
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`)
 })
-
-// Cadena de conexión
 
 main().catch(err => console.log(err))
 

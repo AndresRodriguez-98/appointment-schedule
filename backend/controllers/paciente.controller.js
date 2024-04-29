@@ -36,17 +36,14 @@ const editarPaciente = async (req, res) => {
             return res.status(404).json({ mensaje: 'Paciente no encontrado'})
         }
 
-        // Actualizar los campos modificados
         for (const key in updateParams){
             if(updateParams.hasOwnProperty(key)){
                 pacienteAEditar[key] = updateParams[key]
             }
         }
 
-        // Guardar los cambios del paciente en la db:
         await pacienteAEditar.save();
 
-        // Devolverlo:
         res.json(pacienteAEditar);
     } catch (error) {
         console.error('Error al actualizar el perfil del paciente', error);
