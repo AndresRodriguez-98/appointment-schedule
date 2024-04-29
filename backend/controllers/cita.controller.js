@@ -46,7 +46,7 @@ const crearPagoParaCita = async (nombreMedico, nombrePaciente, citaId, email, pr
     const body = {
         transaction_amount: precio,
         description: `Cita ${citaId} programada para ${nombrePaciente} con ${nombreMedico}`,
-        payment_method_id: "bolbradesco",
+        payment_method_id: "CVU",
         payer: {
             email: email
         },
@@ -107,8 +107,6 @@ const modificarFecha = async (req, res) => {
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }
-
-// TODO: Feedback de la cita
 
 const feedBack = async (req, res) => {
     const citaRealizada = await Cita.findOne({ citaId: req.params.citaId }).exec()
