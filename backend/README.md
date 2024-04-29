@@ -59,7 +59,6 @@ DOCUMENTACIÓN
     <i class="devicon-express-original-wordmark colored"></i>     
 <link />
 
-
 ## ⏳ Instalación
 
 - El primer paso para iniciar el proyecto es dirigirte a la ruta backend usando `cd backend`.
