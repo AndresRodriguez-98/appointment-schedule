@@ -49,16 +49,16 @@ REPO GITHUB
 DOCUMENTACIÓN
 ◍ Probar todos los endpoints y guardar las pruebas funcionando en una carpeta de Postman.
 
-
 ## 🌀 Tecnologías Utilizadas
 
-![NodeJs](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white) 
-![MongoDb](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white) 
-![Express](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black) 
-![JWT](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white) 
-![Passport](https://img.shields.io/badge/-Tailwind-06B6D4?logo=tailwind-css&logoColor=white&style=for-the-badge)
-![Postman]
-![Mercadopago]
+<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <i class="devicon-nodejs-plain-wordmark colored"></i>
+    <i class="devicon-postman-plain colored"></i>
+    <i class="devicon-mongodb-plain-wordmark colored"></i>
+    <i class="devicon-mongoose-original-wordmark colored"></i>
+    <i class="devicon-express-original-wordmark colored"></i>     
+<link />
+
 
 ## ⏳ Instalación
 
