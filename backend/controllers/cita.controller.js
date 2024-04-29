@@ -89,7 +89,7 @@ const cancelarCita = async (req, res) => {
     }
 }
 
-const ModificarHorario = async (req, res) => {
+const modificarFecha = async (req, res) => {
     const citaAEditar = await Cita.findOne({ citaId: req.params.citaId }).exec()
 
     try {
@@ -97,19 +97,46 @@ const ModificarHorario = async (req, res) => {
             return res.status(404).json({ mensaje: 'Cita no encontrada' })
         }
 
+        nuevaFecha = req.body.fechaCita;
+        citaAEditar.fechaCita = nuevaFecha;
+        await citaAEditar.save()
+
         res.json(citaAEditar);
     } catch (error) {
-        console.error('Error al modificar el horario de la cita', error);
+        console.error('Error al modificar la fecha de la cita', error);
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }
 
 // TODO: Feedback de la cita
 
+const feedBack = async (req, res) => {
+    const citaRealizada = await Cita.findOne({ citaId: req.params.citaId }).exec()
+    
+    try {
+        if (!citaRealizada) {
+            return res.status(404).json({ mensaje: 'Cita no encontrada' })
+        }
+        
+        nuevoFeedback = `Feedback de la cita médica (${citaRealizada.citaId}):\n`;
+        nuevoFeedback += `Paciente: ${citaRealizada.nombrePaciente}\n`;
+        nuevoFeedback += `Síntomas / estudios médicos solicitados: ${req.body.feedback}\n`;
+
+        citaRealizada.feedback = nuevoFeedback;
+        await citaRealizada.save()
+
+        res.json(citaRealizada);
+    } catch (error) {
+        console.error('Error al devolver feedback de la cita', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+}
+
 module.exports = {
     crearCita,
     obtenerCitas,
     obtenerCitasporId,
     cancelarCita,
-    ModificarHorario
+    modificarFecha,
+    feedBack
 }
