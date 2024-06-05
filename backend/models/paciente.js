@@ -12,7 +12,7 @@ const PacienteSchema = new mongoose.Schema({
     pacienteApellido: { type: String, require: true },
     edad: { type: Number, require:true },
     citasLista: { type: Array, require: false, default: [] },
-    obraSocial: { type: String, require: false, default: 'Ioma' },
+    obraSocial: { type: String },
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true }
 })

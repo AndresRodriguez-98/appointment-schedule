@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('./auth/auth');
 const app = express()
 const medicoRoutes = require('./routes/medico.routes')
 const pacienteRoutes = require('./routes/paciente.routes')
@@ -9,6 +10,7 @@ const mongoose = require('mongoose')
 app.set('PORT', 3000)
 
 app.use(express.json())
+app.use(passport.initialize());
 
 app.use('/auth', authRoutes)
 

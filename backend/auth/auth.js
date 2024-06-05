@@ -1,10 +1,11 @@
-const passport = require('passport')
-const localStrategy = require('passport-local').Strategy
-const User = require('../models/paciente')
+const passport = require('passport');
 
+const User = require('../models/paciente');
+
+const localStrategy = require('passport-local').Strategy;
 // Requerimientos para desp verificar el token:
-const JWTStrategy = require('passport-jwt').Strategy
-const ExtractJWT = require('passport-jwt').ExtractJwt
+const JWTStrategy = require('passport-jwt').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 // Middlewares de autenticación:
 // primero vamos a modificar los valores por defecto q espera passport y luego ejecutar una funcion de callback:
@@ -13,8 +14,18 @@ passport.use('signup', new localStrategy({
     usernameField: 'email',
     passwordField: 'password'
 }, async (req, email, password, done) => {
+    const { pacienteNombre, pacienteApellido, edad, obraSocial } = req.body
+
     try {
-        const nuevoPaciente = new User({ pacienteNombre: pacienteNombre, pacienteApellido: pacienteApellido, edad: edad, email: email, password: password })
+        const nuevoPaciente = new User({
+            pacienteNombre,
+            pacienteApellido,
+            edad,
+            email,
+            password,
+            obraSocial
+        });
+
         await nuevoPaciente.save()
         return done(null, nuevoPaciente)
     } catch (e) {
@@ -57,3 +68,5 @@ passport.use(new JWTStrategy({
     }
 }
 ))
+
+module.exports = passport;
