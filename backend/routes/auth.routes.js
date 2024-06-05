@@ -1,43 +1,46 @@
 const express = require('express')
 const authRouter = express.Router()
-const User = require('../models/paciente')
-const bcrypt = require('bcrypt')
+const passport = require('passport');
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 // User registration
-authRouter.post('/register', async (req, res) => {
-    try {
-        const { email, password, pacienteNombre, pacienteApellido } = req.body
-        /*         const hashedPassword = await bcrypt.hash(password, 10) */
-        const user = new User({ email, password: password, pacienteNombre: pacienteNombre, pacienteApellido: pacienteApellido })
-        await user.save()
-        res.status(201).json({ message: 'Usuario registrado correctamente' })
-    } catch (error) {
-        res.status(400).json({ error: 'Falló el registro de usuario' })
-    }
-})
+authRouter.post('/register', (req, res, next) => {
+    passport.authenticate('signup', { session: false }, (err, user, info) => {
+        if (err) {
+            return res.status(500).json({ message: err.message });
+        }
+        if (!user) {
+            return res.status(400).json({ message: info.message });
+        }
+        res.status(201).json({ message: 'Registro exitoso', user });
+    })(req, res, next);
+});
 
 // User login
-authRouter.post('/login', async (req, res) => {
-    try {
-        const { email, password } = req.body
-        const user = await User.findOne({ email })
+// Ruta de login
+authRouter.post('/login', (req, res, next) => {
+    passport.authenticate('login', { session: false }, (err, user, info) => {
+        if (err) {
+            return res.status(500).json({ error: 'Falló el login' });
+        }
         if (!user) {
-            return res.status(401).json({ error: 'Usuario no encontrado' })
+            return res.status(401).json({ error: info.message || 'Usuario no encontrado' });
         }
-        const passwordMatch = await bcrypt.compare(password, user.password)
-        if (!passwordMatch) {
-            return res.status(401).json({ error: 'Fallo en la autenticación' })
-        }
-        const token = jwt.sign({ pacienteId: user.pacienteId }, process.env.JWT_SECRET_KEY, {
-            expiresIn: '1h',
-        })
-        res.status(200).json({ token })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ error: 'Falló el login' })
-    }
-})
+
+        req.login(user, { session: false }, (loginErr) => {
+            if (loginErr) {
+                return res.status(500).json({ error: 'Falló el login' });
+            }
+            // Crear el token incluyendo el ID del usuario, para eso ASEGURARNOS DE CAPTURAR EL ID!!! (con lo que puse en body):
+            const body = { _id: user._id, email: user.email };
+            const token = jwt.sign({ user: body }, process.env.JWT_SECRET_KEY, {
+                expiresIn: '1h',
+            });
+            return res.status(200).json({ token });
+        });
+    })(req, res, next);
+});
+
 
 module.exports = authRouter

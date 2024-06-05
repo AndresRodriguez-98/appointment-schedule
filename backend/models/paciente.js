@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 const PacienteSchema = new mongoose.Schema({
-    // aqui los datos del esquema
     pacienteId: {
         type: mongoose.Schema.Types.ObjectId,
         index: true,
@@ -13,7 +12,7 @@ const PacienteSchema = new mongoose.Schema({
     pacienteApellido: { type: String, require: true },
     edad: { type: Number, require:true },
     citasLista: { type: Array, require: false, default: [] },
-    obraSocial: { type: String, require: false, default: 'Ioma' },
+    obraSocial: { type: String },
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true }
 })

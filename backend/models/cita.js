@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 const CitaSchema = new mongoose.Schema({
-    // aqui los datos del esquema
     citaId: {
         type: mongoose.Schema.Types.ObjectId,
         index: true,
